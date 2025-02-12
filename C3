@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char *names[10] = {
+        "Ali", "majed","mohammed","sayaf","saad",  "abdullah", "ahmed",  "bader", "abdulaziz","mussab"};
+    file = fopen("names.txt", "w");
+    if (file == NULL) {
+        printf("Error wating.\n");
+        return 1;
+    }
+    for (int i = 0; i < 10; i++) {
+        fprintf(file, "%s\n", names[i]);
+    }
+    fclose(file);
+    file = fopen("names.txt", "r");
+    if (file == NULL) {
+        printf("Error for reading.\n");
+        return 1;
+    }
+    char name[77];
+    printf("Names in the file:\n");
+    while (fgets(name, sizeof(name), file) != NULL) {
+        printf("%s", name);
+    }
+    fclose(file);
+    return 0;
+}
